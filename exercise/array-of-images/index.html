@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <title>Fetch a Rainbow</title>
+</head>
+
+<body>
+  <h1>Rainbow and other images...</h1>
+  <script>
+    console.log("Fetching a rainbow...");
+    
+    let filenames = [
+      'images/alsorainbow.jpg',
+      'images/cat.png',
+      'images/woman.png'
+    ];
+
+    getRainbow(filenames);
+
+    async function getRainbow(filenames) {
+      for (let i = 0; i < filenames.length; i++) {
+        const response = await fetch(filenames[i]);
+        console.log(response);
+        const blob = await response.blob();
+        console.log(blob);
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(blob);
+        img.width = '480';
+        document.body.append(img);
+      }
+    }
+
+  </script>
+</body>
+
+</html>

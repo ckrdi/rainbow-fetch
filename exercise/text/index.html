@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <title>Fetch a Rainbow</title>
+</head>
+
+<body>
+  <p id="rainbow"></p>
+  <script>
+    console.log("Fetching a rainbow...");
+
+    getRainbow()
+      .catch(error => {
+        console.log("error!");
+        console.error(error);
+      })
+
+    async function getRainbow() {
+      const response = await fetch('rainbow.txt');
+      console.log(response);
+      const blob = await response.text();
+      console.log(blob);
+      document.getElementById('rainbow').innerHTML = blob;
+    }
+
+  </script>
+</body>
+
+</html>
